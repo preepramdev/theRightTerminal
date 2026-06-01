@@ -12,47 +12,77 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(statusBarItem);
 
     let disposable = vscode.commands.registerCommand('theRightTerminal.open', async () => {
-        const config = vscode.workspace.getConfiguration('theRightTerminal');
-        const terminalName = config.get<string>('terminalName', 'AI CLI Terminal');
-        const defaultCommand = config.get<string>('defaultCommand', '');
-        const clearOnOpen = config.get<boolean>('clearOnOpen', false);
-        const preserveFocus = config.get<boolean>('preserveFocus', false);
+        try {
+            const config = vscode.workspace.getConfiguration('theRightTerminal');
+            const terminalName = config.get<string>('terminalName', 'AI CLI Terminal');
+            const defaultCommand = config.get<string>('defaultCommand', '');
+            const clearOnOpen = config.get<boolean>('clearOnOpen', false);
+            const preserveFocus = config.get<boolean>('preserveFocus', false);
 
-        // Keep track of active text editor to restore focus if needed
-        const previousActiveEditor = vscode.window.activeTextEditor;
+            // Keep track of active text editor to restore focus if needed
+            const previousActiveEditor = vscode.window.activeTextEditor;
 
-        // Find existing terminal or create a new one
-        let terminal = vscode.window.terminals.find(t => t.name === terminalName);
-        const isNew = !terminal;
+            // Find an existing active terminal with our name that hasn't exited
+            let terminal = vscode.window.terminals.find(t => t.name === terminalName && t.exitStatus === undefined);
+            let isNew = !terminal;
 
-        if (!terminal) {
-            terminal = vscode.window.createTerminal({
-                name: terminalName,
-                location: vscode.TerminalLocation.Editor
-            });
-        }
-
-        // Show the terminal editor
-        terminal.show(preserveFocus);
-
-        // Only move and execute the command if this is a newly created terminal
-        if (isNew) {
-            // A slight delay is helpful to ensure VS Code has rendered/registered the terminal editor tab
-            await new Promise(resolve => setTimeout(resolve, 150));
-            await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup');
-
-            // Run the default command if it's a newly created terminal
-            if (defaultCommand) {
-                if (clearOnOpen) {
-                    terminal.sendText('clear');
-                }
-                terminal.sendText(defaultCommand);
+            if (!terminal) {
+                terminal = vscode.window.createTerminal({
+                    name: terminalName,
+                    location: vscode.TerminalLocation.Editor
+                });
+                isNew = true;
             }
-        }
 
-        // Restore focus to the previous editor if preserveFocus is enabled
-        if (preserveFocus && previousActiveEditor) {
-            await vscode.window.showTextDocument(previousActiveEditor.document, previousActiveEditor.viewColumn);
+            // Show the terminal editor
+            terminal.show(preserveFocus);
+
+            // Only move and execute the command if this is a newly created terminal
+            if (isNew) {
+                // A slight delay is helpful to ensure VS Code has rendered/registered the terminal editor tab
+                await new Promise(resolve => setTimeout(resolve, 150));
+                await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup');
+
+                // Run the default command if it's a newly created terminal
+                if (defaultCommand) {
+                    if (clearOnOpen) {
+                        terminal.sendText('clear');
+                    }
+                    terminal.sendText(defaultCommand);
+                }
+            }
+
+            // Restore focus to the previous editor if preserveFocus is enabled
+            if (preserveFocus && previousActiveEditor) {
+                await vscode.window.showTextDocument(previousActiveEditor.document, previousActiveEditor.viewColumn);
+            }
+        } catch (error) {
+            console.error('Error opening the right terminal:', error);
+            
+            // Safe fallback to create a brand new terminal on error
+            try {
+                const config = vscode.workspace.getConfiguration('theRightTerminal');
+                const terminalName = config.get<string>('terminalName', 'AI CLI Terminal');
+                const defaultCommand = config.get<string>('defaultCommand', '');
+                const clearOnOpen = config.get<boolean>('clearOnOpen', false);
+                const preserveFocus = config.get<boolean>('preserveFocus', false);
+
+                const terminal = vscode.window.createTerminal({
+                    name: terminalName,
+                    location: vscode.TerminalLocation.Editor
+                });
+                terminal.show(preserveFocus);
+                await new Promise(resolve => setTimeout(resolve, 150));
+                await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup');
+                if (defaultCommand) {
+                    if (clearOnOpen) {
+                        terminal.sendText('clear');
+                    }
+                    terminal.sendText(defaultCommand);
+                }
+            } catch (fallbackError) {
+                console.error('Fallback failed:', fallbackError);
+            }
         }
     });
 

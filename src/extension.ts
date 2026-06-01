@@ -27,24 +27,26 @@ export function activate(context: vscode.ExtensionContext) {
             let isNew = !terminal;
 
             if (!terminal) {
+                // Create terminal directly in the group beside the current one (native split-right)
                 terminal = vscode.window.createTerminal({
                     name: terminalName,
-                    location: vscode.TerminalLocation.Editor
+                    location: {
+                        viewColumn: vscode.ViewColumn.Beside,
+                        preserveFocus: preserveFocus
+                    }
                 });
                 isNew = true;
+            } else {
+                // Show the existing terminal editor
+                terminal.show(preserveFocus);
             }
 
-            // Show the terminal editor
-            terminal.show(preserveFocus);
-
-            // Only move and execute the command if this is a newly created terminal
+            // Only execute the auto-command if this is a newly created terminal
             if (isNew) {
-                // A slight delay is helpful to ensure VS Code has rendered/registered the terminal editor tab
-                await new Promise(resolve => setTimeout(resolve, 150));
-                await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup');
-
                 // Run the default command if it's a newly created terminal
                 if (defaultCommand) {
+                    // A slight delay ensures the terminal is ready to receive input
+                    await new Promise(resolve => setTimeout(resolve, 150));
                     if (clearOnOpen) {
                         terminal.sendText('clear');
                     }
@@ -69,12 +71,13 @@ export function activate(context: vscode.ExtensionContext) {
 
                 const terminal = vscode.window.createTerminal({
                     name: terminalName,
-                    location: vscode.TerminalLocation.Editor
+                    location: {
+                        viewColumn: vscode.ViewColumn.Beside,
+                        preserveFocus: preserveFocus
+                    }
                 });
-                terminal.show(preserveFocus);
-                await new Promise(resolve => setTimeout(resolve, 150));
-                await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup');
                 if (defaultCommand) {
+                    await new Promise(resolve => setTimeout(resolve, 150));
                     if (clearOnOpen) {
                         terminal.sendText('clear');
                     }

@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('theRightTerminal.open', async () => {
         try {
             const config = vscode.workspace.getConfiguration('theRightTerminal');
-            const terminalName = config.get<string>('terminalName', 'AI CLI Terminal');
+            const terminalName = config.get<string>('terminalName', 'Right Terminal');
             const defaultCommand = config.get<string>('defaultCommand', '');
             const clearOnOpen = config.get<boolean>('clearOnOpen', false);
             const preserveFocus = config.get<boolean>('preserveFocus', false);
@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
             // Safe fallback to create a brand new terminal on error
             try {
                 const config = vscode.workspace.getConfiguration('theRightTerminal');
-                const terminalName = config.get<string>('terminalName', 'AI CLI Terminal');
+                const terminalName = config.get<string>('terminalName', 'Right Terminal');
                 const defaultCommand = config.get<string>('defaultCommand', '');
                 const clearOnOpen = config.get<boolean>('clearOnOpen', false);
                 const preserveFocus = config.get<boolean>('preserveFocus', false);

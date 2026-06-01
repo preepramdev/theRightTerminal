@@ -51,7 +51,7 @@
         },
         "theRightTerminal.terminalName": {
           "type": "string",
-          "default": "AI CLI Terminal",
+          "default": "Right Terminal",
           "description": "Name of the terminal instance shown in VS Code."
         },
         "theRightTerminal.clearOnOpen": {

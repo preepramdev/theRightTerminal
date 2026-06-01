@@ -24,7 +24,7 @@ Customize the extension inside VS Code's settings under **The Right Terminal**:
 
 | Setting | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `theRightTerminal.terminalName` | `string` | `"AI CLI Terminal"` | The visible name of the terminal tab. |
+| `theRightTerminal.terminalName` | `string` | `"Right Terminal"` | The visible name of the terminal tab. |
 | `theRightTerminal.defaultCommand` | `string` | `""` | The command to auto-run on terminal creation (e.g., `aider`, `gpt-cli`). |
 | `theRightTerminal.clearOnOpen` | `boolean` | `false` | Whether to clear the terminal before running the default command. |
 | `theRightTerminal.preserveFocus` | `boolean` | `false` | Whether to keep the editor focused after launching the terminal. |

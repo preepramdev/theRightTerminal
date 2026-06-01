@@ -27,7 +27,7 @@ The extension supports three fast ways to trigger the terminal:
 
 ### Configuration Properties
 Available in VS Code settings under `The Right Terminal`:
-- `theRightTerminal.terminalName` (string, default: `"AI CLI Terminal"`): The visible terminal instance name.
+- `theRightTerminal.terminalName` (string, default: `"Right Terminal"`): The visible terminal instance name.
 - `theRightTerminal.defaultCommand` (string, default: `""`): Command sent to the terminal upon fresh creation.
 - `theRightTerminal.clearOnOpen` (boolean, default: `false`): If true, runs `clear` before executing the default command.
 - `theRightTerminal.preserveFocus` (boolean, default: `false`): If true, returns active focus to the editor group on the left.

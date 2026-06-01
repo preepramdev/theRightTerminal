@@ -1,0 +1,78 @@
+{
+  "name": "the-right-terminal",
+  "displayName": "The Right Terminal",
+  "description": "Opens a separate terminal window on the right side of your editor grid, perfect for running AI CLIs.",
+  "version": "0.1.0",
+  "publisher": "pram",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "theRightTerminal.open",
+        "title": "Open Terminal on the Right",
+        "icon": "$(terminal)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "theRightTerminal.open",
+        "key": "ctrl+alt+t",
+        "mac": "cmd+alt+t"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "theRightTerminal.open",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "The Right Terminal",
+      "properties": {
+        "theRightTerminal.defaultCommand": {
+          "type": "string",
+          "default": "",
+          "description": "Command to automatically execute when the Right Terminal opens (e.g. 'aider', 'llm', or an executable path)."
+        },
+        "theRightTerminal.terminalName": {
+          "type": "string",
+          "default": "AI CLI Terminal",
+          "description": "Name of the terminal instance shown in VS Code."
+        },
+        "theRightTerminal.clearOnOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to clear the terminal before running the default command."
+        },
+        "theRightTerminal.preserveFocus": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to keep focus on the previous active editor group instead of focusing the terminal."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "package": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify",
+    "check-types": "tsc --noEmit",
+    "publish": "npx @vscode/vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3"
+  }
+}

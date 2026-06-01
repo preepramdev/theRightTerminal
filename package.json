@@ -2,8 +2,8 @@
   "name": "the-right-terminal",
   "displayName": "The Right Terminal",
   "description": "Opens a separate terminal window on the right side of your editor grid, perfect for running AI CLIs.",
-  "version": "0.1.0",
-  "publisher": "pram",
+  "version": "0.1.1",
+  "publisher": "preepramdev",
   "repository": {
     "type": "git",
     "url": "https://github.com/preepramdev/theRightTerminal.git"

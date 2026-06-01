@@ -1,5 +1,8 @@
 # The Right Terminal 🚀
 
+[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/preepramdev.the-right-terminal.svg?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=preepramdev.the-right-terminal)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/preepramdev.the-right-terminal.svg)](https://marketplace.visualstudio.com/items?itemName=preepramdev.the-right-terminal)
+
 An elegant VS Code extension that launches a dedicated, fully-featured terminal inside your Editor Area and automatically positions it on the **right side** of your editor grid.
 
 Perfect for running interactive CLI-based AI tools (like `aider`, `gpt-cli`, or `llm`) side-by-side with your code, while keeping your default bottom terminal panel completely free for other tasks!
@@ -33,8 +36,14 @@ Customize the extension inside VS Code's settings under **The Right Terminal**:
 
 ## Installation 📦
 
-### Direct VSIX Installation (Pre-packaged)
-1. Download the `the-right-terminal-0.1.0.vsix` file.
+### Via VS Code Marketplace (Recommended)
+1. Open **Extensions** in VS Code (`Ctrl+Shift+X` / `Cmd+Shift+X`).
+2. Search for **The Right Terminal** by `preepramdev`.
+3. Click **Install**.
+4. Or install directly from the [VS Code Marketplace Page](https://marketplace.visualstudio.com/items?itemName=preepramdev.the-right-terminal).
+
+### Direct VSIX Installation
+1. Download the `the-right-terminal-0.1.1.vsix` file.
 2. Open VS Code, open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
 3. Select **Extensions: Install from VSIX...** and choose the downloaded file.
 

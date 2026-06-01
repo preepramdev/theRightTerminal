@@ -35,17 +35,19 @@ export function activate(context: vscode.ExtensionContext) {
         // Show the terminal editor
         terminal.show(preserveFocus);
 
-        // Move the terminal editor to the right group
-        // A slight delay is helpful to ensure VS Code has rendered/registered the terminal editor tab
-        await new Promise(resolve => setTimeout(resolve, 150));
-        await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup');
+        // Only move and execute the command if this is a newly created terminal
+        if (isNew) {
+            // A slight delay is helpful to ensure VS Code has rendered/registered the terminal editor tab
+            await new Promise(resolve => setTimeout(resolve, 150));
+            await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup');
 
-        // Run the default command if it's a newly created terminal
-        if (isNew && defaultCommand) {
-            if (clearOnOpen) {
-                terminal.sendText('clear');
+            // Run the default command if it's a newly created terminal
+            if (defaultCommand) {
+                if (clearOnOpen) {
+                    terminal.sendText('clear');
+                }
+                terminal.sendText(defaultCommand);
             }
-            terminal.sendText(defaultCommand);
         }
 
         // Restore focus to the previous editor if preserveFocus is enabled

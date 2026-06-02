@@ -27,10 +27,10 @@ This layout mimics the modern, popular workspace structure of high-end AI editor
 
 ## Core Features ✨
 
-* 📂 **Real Editor Terminal:** Spawns a native, fully-featured terminal directly inside your editor area, allowing you to drag, drop, pin, or group it like any editor tab.
+* 📂 **Real Editor Terminal:** Spawns a native, fully-featured terminal directly inside your editor area, allowing you to drag, drop, pin, or group it like any editor tab. Supports a seamless **Show/Hide Toggle** that completely hides the window while preserving all running CLI states.
 * ⚡ **3 Quick Launch Entrypoints:**
-  1. **Keyboard Shortcut:** Toggle the terminal instantly using `Cmd+Alt+T` (macOS) or `Ctrl+Alt+T` (Windows/Linux).
-  2. **Status Bar Shortcut:** Click the `$(terminal) Right Terminal` button in the bottom-right status bar.
+  1. **Keyboard Shortcut:** Toggle the terminal instantly using `Ctrl+Cmd+T` (macOS) or `Ctrl+Alt+T` (Windows/Linux).
+  2. **Status Bar Shortcut:** Click the `Right Terminal` button in the bottom-right status bar (which dynamically updates to `Right Terminal (Running)` to show when the terminal is active in the background).
   3. **Editor Tab Menu Button:** Click the terminal icon (`$(terminal)`) in the top-right menu of your active editor tab.
 * ⚙️ **Auto-Run Commands:** Configure a default CLI tool (like `aider` or `llm`) to start automatically upon fresh terminal creation.
 * 🎯 **Preserve Focus:** Toggle cursor focus retention so you can open or show the terminal while immediately typing in your active code file.

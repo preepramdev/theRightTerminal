@@ -2,8 +2,9 @@
   "name": "the-right-terminal",
   "displayName": "The Right Terminal",
   "description": "Opens a separate terminal window on the right side of your editor grid, perfect for running AI CLIs.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "preepramdev",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/preepramdev/theRightTerminal.git"
@@ -15,6 +16,7 @@
     "Other"
   ],
   "activationEvents": [
+    "onStartupFinished",
     "onCommand:theRightTerminal.open"
   ],
   "main": "./dist/extension.js",
@@ -22,7 +24,7 @@
     "commands": [
       {
         "command": "theRightTerminal.open",
-        "title": "Open Terminal on the Right",
+        "title": "Toggle Terminal on the Right",
         "icon": "$(terminal)"
       }
     ],
@@ -30,7 +32,7 @@
       {
         "command": "theRightTerminal.open",
         "key": "ctrl+alt+t",
-        "mac": "cmd+alt+t"
+        "mac": "ctrl+cmd+t"
       }
     ],
     "menus": {

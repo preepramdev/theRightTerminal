@@ -1,0 +1,151 @@
+{
+  "communities": {
+    "0": [
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noimplicitany",
+      "tsconfig_compileroptions_noimplicitreturns",
+      "tsconfig_compileroptions_nounusedlocals",
+      "tsconfig_compileroptions_nounusedparameters",
+      "tsconfig_compileroptions_outdir",
+      "tsconfig_compileroptions_sourcemap",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_include"
+    ],
+    "1": [
+      "package",
+      "package_activationevents",
+      "package_categories",
+      "package_displayname",
+      "package_engines",
+      "package_engines_vscode",
+      "package_icon",
+      "package_main",
+      "package_name",
+      "package_publisher",
+      "package_repository",
+      "package_repository_url",
+      "package_version"
+    ],
+    "2": [
+      "package_configuration_title",
+      "package_contributes",
+      "package_contributes_commands",
+      "package_contributes_keybindings",
+      "package_contributes_menus",
+      "package_menus_editor_title",
+      "vscode_launch",
+      "vscode_launch_configurations",
+      "vscode_launch_version"
+    ],
+    "3": [
+      "package_configuration_properties",
+      "package_description",
+      "package_properties_therightterminal_clearonopen",
+      "package_properties_therightterminal_defaultcommand",
+      "package_properties_therightterminal_preservefocus",
+      "package_properties_therightterminal_terminalname",
+      "package_repository_type",
+      "package_therightterminal_clearonopen_default"
+    ],
+    "4": [
+      "package_scripts",
+      "package_scripts_check_types",
+      "package_scripts_compile",
+      "package_scripts_package",
+      "package_scripts_publish",
+      "package_scripts_vscode_prepublish",
+      "package_scripts_watch"
+    ],
+    "5": [
+      "package_devdependencies",
+      "package_devdependencies_esbuild",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_vscode",
+      "package_devdependencies_typescript"
+    ],
+    "6": [
+      "src_extension",
+      "src_extension_activate",
+      "src_extension_deactivate",
+      "src_extension_findterminaltab"
+    ],
+    "7": [
+      "vscode_tasks",
+      "vscode_tasks_tasks",
+      "vscode_tasks_version"
+    ]
+  },
+  "cohesion": {
+    "0": 0.13333333333333333,
+    "1": 0.15384615384615385,
+    "2": 0.2222222222222222,
+    "3": 0.5714285714285714,
+    "4": 0.2857142857142857,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 0.6666666666666666
+  },
+  "gods": [
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 13
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "package_contributes",
+      "label": "contributes",
+      "degree": 5
+    },
+    {
+      "id": "vscode_launch_configurations",
+      "label": "configurations",
+      "degree": 4
+    },
+    {
+      "id": "package_properties_therightterminal_defaultcommand",
+      "label": "theRightTerminal.defaultCommand",
+      "degree": 4
+    },
+    {
+      "id": "package_properties_therightterminal_terminalname",
+      "label": "theRightTerminal.terminalName",
+      "degree": 4
+    },
+    {
+      "id": "package_properties_therightterminal_clearonopen",
+      "label": "theRightTerminal.clearOnOpen",
+      "degree": 4
+    },
+    {
+      "id": "package_therightterminal_clearonopen_default",
+      "label": "default",
+      "degree": 4
+    },
+    {
+      "id": "package_properties_therightterminal_preservefocus",
+      "label": "theRightTerminal.preserveFocus",
+      "degree": 4
+    },
+    {
+      "id": "package_repository",
+      "label": "repository",
+      "degree": 3
+    }
+  ],
+  "surprises": [],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

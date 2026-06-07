@@ -1,0 +1,27 @@
+{
+  ".vscode/launch.json": {
+    "mtime": 1780301756.7861767,
+    "ast_hash": "fb074ec455c317893f8f8634d2d463de",
+    "semantic_hash": "fb074ec455c317893f8f8634d2d463de"
+  },
+  ".vscode/tasks.json": {
+    "mtime": 1780301756.7959793,
+    "ast_hash": "376a2647ecf86740b25f282435845601",
+    "semantic_hash": "376a2647ecf86740b25f282435845601"
+  },
+  "package.json": {
+    "mtime": 1780412382.7841942,
+    "ast_hash": "5717dc4b38767778afaebe5ad84eabce",
+    "semantic_hash": "5717dc4b38767778afaebe5ad84eabce"
+  },
+  "src/extension.ts": {
+    "mtime": 1780411847.0339274,
+    "ast_hash": "31d21ef5dc79a39c9b6d83e46fbe1877",
+    "semantic_hash": "31d21ef5dc79a39c9b6d83e46fbe1877"
+  },
+  "tsconfig.json": {
+    "mtime": 1780301756.7650902,
+    "ast_hash": "5174b1ef692744135e9468285accc92a",
+    "semantic_hash": "5174b1ef692744135e9468285accc92a"
+  }
+}

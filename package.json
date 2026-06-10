@@ -2,7 +2,7 @@
   "name": "the-right-terminal",
   "displayName": "The Right Terminal",
   "description": "Opens a separate terminal window on the right side of your editor grid, perfect for running AI CLIs.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "preepramdev",
   "icon": "icon.png",
   "repository": {
@@ -16,7 +16,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished",
+    "*",
     "onCommand:theRightTerminal.open"
   ],
   "main": "./dist/extension.js",

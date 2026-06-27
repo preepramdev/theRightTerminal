@@ -1,5 +1,10 @@
 .vscode/**
 .vscodeignore
 .gitignore
+.git/**
 src/**
 tsconfig.json
+graphify-out/**
+TODO.md
+agent.md
+*.vsix

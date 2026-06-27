@@ -9,35 +9,46 @@ function disposeTerminal(name: string) {
 }
 
 async function closeEmptyGroups() {
-    for (const group of vscode.window.tabGroups.all) {
-        if (group.tabs.length === 0) {
-            await vscode.window.tabGroups.close(group, true);
+    let closed = true;
+    while (closed) {
+        closed = false;
+        for (const group of vscode.window.tabGroups.all) {
+            if (group.tabs.length === 0) {
+                await vscode.window.tabGroups.close(group, true);
+                closed = true;
+                break;
+            }
         }
     }
     await vscode.commands.executeCommand('workbench.action.evenEditorWidths');
 }
 
-export function activate(context: vscode.ExtensionContext) {
-    console.log('Extension "the-right-terminal" is now active!');
-
+function getConfig() {
     const config = vscode.workspace.getConfiguration('theRightTerminal');
-    const terminalName = config.get<string>('terminalName', 'Right Terminal');
-    const defaultCommand = config.get<string>('defaultCommand', '');
-    const clearOnOpen = config.get<boolean>('clearOnOpen', false);
-    const preserveFocus = config.get<boolean>('preserveFocus', false);
+    return {
+        terminalName: config.get<string>('terminalName', 'Right Terminal'),
+        defaultCommand: config.get<string>('defaultCommand', ''),
+        clearOnOpen: config.get<boolean>('clearOnOpen', false),
+        preserveFocus: config.get<boolean>('preserveFocus', false),
+    };
+}
+
+export function activate(context: vscode.ExtensionContext) {
+    const { terminalName } = getConfig();
 
     disposeTerminal(terminalName);
     closeEmptyGroups();
 
     const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
     statusBarItem.command = 'theRightTerminal.open';
-    statusBarItem.text = '$(terminal) Right Terminal';
-    statusBarItem.tooltip = 'Click to toggle Terminal on the Right';
+    statusBarItem.text = `$(terminal) ${terminalName}`;
+    statusBarItem.tooltip = `Toggle ${terminalName}`;
     statusBarItem.show();
     context.subscriptions.push(statusBarItem);
 
     let disposable = vscode.commands.registerCommand('theRightTerminal.open', async () => {
         try {
+            const { terminalName, defaultCommand, clearOnOpen, preserveFocus } = getConfig();
             const previousActiveEditor = vscode.window.activeTextEditor;
 
             const existing = vscode.window.terminals.find(t => t.name === terminalName);
@@ -68,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
                 await vscode.window.showTextDocument(previousActiveEditor.document, previousActiveEditor.viewColumn);
             }
         } catch (error) {
-            console.error('Error opening the right terminal:', error);
+            vscode.window.showErrorMessage('Failed to open Right Terminal');
         }
     });
 
@@ -76,5 +87,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-    disposeTerminal('Right Terminal');
+    const { terminalName } = getConfig();
+    disposeTerminal(terminalName);
 }

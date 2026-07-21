@@ -116,6 +116,20 @@ Want to customize, improve, or build the extension locally?
 
 ---
 
+## Publishing 📤
+
+The extension is published to two registries so it's discoverable in both VS Code and VS Code forks (Cursor and similar tools generally pull from [Open VSX](https://open-vsx.org) rather than the Microsoft Marketplace):
+
+- **Visual Studio Marketplace:** `npm run publish` (runs `vsce publish`, needs a Marketplace PAT set up via `vsce login preepramdev` first).
+- **Open VSX Registry:** `npm run publish:ovsx` (runs `ovsx publish`, reads the token from the `OVSX_PAT` environment variable).
+
+One-time setup for Open VSX (only needs to be done once per publisher, not per release):
+1. Sign in at [open-vsx.org](https://open-vsx.org) with GitHub.
+2. Create/claim the `preepramdev` namespace (Profile → Namespaces), or via CLI: `npx ovsx create-namespace preepramdev -p <token>`.
+3. Generate an access token from your Open VSX profile settings and export it: `export OVSX_PAT=<token>`.
+
+---
+
 ## License 📄
 
 This project is open-source and licensed under the [MIT License](LICENSE).

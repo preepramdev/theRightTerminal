@@ -16,6 +16,7 @@
     "Other"
   ],
   "activationEvents": [
+    "onStartupFinished",
     "onCommand:theRightTerminal.open"
   ],
   "main": "./dist/extension.js",
@@ -74,12 +75,21 @@
     "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
     "package": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify",
     "check-types": "tsc --noEmit",
-    "publish": "npx @vscode/vsce publish"
+    "lint": "eslint src",
+    "pretest": "npm run check-types && tsc -p tsconfig.test.json",
+    "test": "vscode-test",
+    "publish": "npx @vscode/vsce publish",
+    "publish:ovsx": "npx ovsx publish -p $OVSX_PAT"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0",
     "esbuild": "^0.20.0",
-    "typescript": "^5.3.3"
+    "eslint": "^10.7.0",
+    "ovsx": "^1.0.2",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.65.0"
   }
 }

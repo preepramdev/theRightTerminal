@@ -23,7 +23,7 @@ async function closeEmptyGroups() {
     await vscode.commands.executeCommand('workbench.action.evenEditorWidths');
 }
 
-function getConfig() {
+export function getConfig() {
     const config = vscode.workspace.getConfiguration('theRightTerminal');
     return {
         terminalName: config.get<string>('terminalName', 'Right Terminal'),
@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
     statusBarItem.show();
     context.subscriptions.push(statusBarItem);
 
-    let disposable = vscode.commands.registerCommand('theRightTerminal.open', async () => {
+    const disposable = vscode.commands.registerCommand('theRightTerminal.open', async () => {
         try {
             const { terminalName, defaultCommand, clearOnOpen, preserveFocus } = getConfig();
             const previousActiveEditor = vscode.window.activeTextEditor;
@@ -79,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
                 await vscode.window.showTextDocument(previousActiveEditor.document, previousActiveEditor.viewColumn);
             }
         } catch (error) {
-            vscode.window.showErrorMessage('Failed to open Right Terminal');
+            vscode.window.showErrorMessage(`Failed to open Right Terminal: ${error}`);
         }
     });
 

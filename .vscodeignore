@@ -2,9 +2,15 @@
 .vscodeignore
 .gitignore
 .git/**
+.github/**
 src/**
+out/**
 tsconfig.json
+tsconfig.test.json
+.vscode-test.mjs
+eslint.config.mjs
 graphify-out/**
 TODO.md
 agent.md
+CLAUDE.md
 *.vsix
